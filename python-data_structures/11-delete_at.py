@@ -6,4 +6,4 @@ def delete_at(my_list=[], idx=0):
         del my_list[idx]
 
     # Return the list (modified or original)
-    return my_listi
+    return my_list
