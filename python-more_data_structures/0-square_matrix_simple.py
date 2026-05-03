@@ -1,9 +1,5 @@
 #!/usr/bin/python3
 def square_matrix_simple(matrix=[]):
-    new_matrix = []
-    for row in matrix:
-        new_row = []
-        for num in row:
-            new_row.append(num ** 2)
-        new_matrix.append(new_row)
-    ireturn new_matrix
+    # The outer loop creates a new row
+    # The inner loop squares each element in that row
+    return [[num ** 2 for num in row] for row in matrix]
