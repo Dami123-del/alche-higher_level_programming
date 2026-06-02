@@ -1,4 +1,4 @@
-#!/bin/usr/python3
+#!/usr/bin/python3
 """This module defines the MyList class.
 
 It provides extended functionality over the standard built-in list.
