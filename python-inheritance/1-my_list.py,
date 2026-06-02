@@ -1,0 +1,70 @@
+#!/usr/bin/python3import io
+import unittest
+from contextlib import redirect_stdout
+from my_list import MyList
+
+
+class TestMyList(unittest.TestCase):
+    """Test suite matching all specific validation criteria for MyList."""
+
+    def test_instantiation_and_inheritance(self):
+        """Test present: check instantiation & inherits from list."""
+        my_list = MyList()
+        self.assertIsInstance(my_list, MyList)
+        self.assertIsInstance(my_list, list)
+
+    def test_str_representation(self):
+        """Test present: check __str__."""
+        my_list = MyList([1, 2, 3])
+        self.assertEqual(str(my_list), "[1, 2, 3]")
+
+    def test_append(self):
+        """Test present: check append()."""
+        my_list = MyList()
+        my_list.append(42)
+        self.assertEqual(my_list, [42])
+
+    def test_print_sorted_empty(self):
+        """Test present: check print_sorted() with empty list."""
+        my_list = MyList()
+        f = io.StringIO()
+        with redirect_stdout(f):
+            my_list.print_sorted()
+        self.assertEqual(f.getvalue().strip(), "[]")
+
+    def test_print_sorted_already_sorted(self):
+        """Test present: check print_sorted() with sorted append."""
+        my_list = MyList([1, 2, 3])
+        f = io.StringIO()
+        with redirect_stdout(f):
+            my_list.print_sorted()
+        self.assertEqual(f.getvalue().strip(), "[1, 2, 3]")
+
+    def test_print_sorted_unsorted(self):
+        """Test present: check print_sorted() with not sorted append."""
+        my_list = MyList([3, 1, 2])
+        f = io.StringIO()
+        with redirect_stdout(f):
+            my_list.print_sorted()
+        self.assertEqual(f.getvalue().strip(), "[1, 2, 3]")
+
+    def test_print_sorted_with_negatives(self):
+        """Test present: check print_sorted() with negative numbers."""
+        my_list = MyList([3, -1, -5, 2])
+        f = io.StringIO()
+        with redirect_stdout(f):
+            my_list.print_sorted()
+        self.assertEqual(f.getvalue().strip(), "[-5, -1, 2, 3]")
+
+    def test_print_sorted_returns_new_list(self):
+        """Test present: check print_sorted() returns a new list (non-destructive)."""
+        my_list = MyList([3, 1, 2])
+        f = io.StringIO()
+        with redirect_stdout(f):
+            my_list.print_sorted()
+        # Ensure underlying structure was NOT modified dynamically
+        self.assertEqual(my_list, [3, 1, 2])
+
+
+if __name__ == "__main__":
+    unittest.main()
