@@ -1,27 +1,22 @@
 #!/usr/bin/python3
-"""This module defines the Rectangle class.
+"""Module that defines Rectangle."""
 
-It inherits geometric validation capabilities from the BaseGeometry class
-to create structurally valid rectangle shapes.
-"""
+
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
-    """A class representing a rectangle shape that inherits from BaseGeometry."""
+    """Rectangle class that inherits from BaseGeometry."""
 
     def __init__(self, width, height):
-        """Initialize a new Rectangle instance.
+        """Initialize a Rectangle.
 
         Args:
-            width (int): The width of the rectangle.
-            height (int): The height of the rectangle.
-
-        Raises:
-            TypeError: If width or height is not an integer.
-            ValueError: If width or height is less than or equal to 0.
+            width (int): Width of the rectangle.
+            height (int): Height of the rectangle.
         """
         self.integer_validator("width", width)
         self.integer_validator("height", height)
+
         self.__width = width
         self.__height = height
